@@ -10,7 +10,6 @@ from django.template.loader import render_to_string
 from django.utils.encoding import (force_bytes,force_text)
 from .token import Account_Vlidation_Token
 
-#CSRF_FAILURE_VIEW change it 
 
 class SignupForm(UserCreationForm):
     class Meta:
@@ -32,12 +31,9 @@ def Login_Request_Handler(request):
             user=form.get_user()
             login(request,user)
             return JsonResponse()
-        else:
-          
+        else:       
             return JsonResponse()
-    else:
-  
-        return JsonResponse()    
+       
 
 
 
@@ -63,11 +59,7 @@ def Signup_Request_Handler(request):
         else:
         
             return JsonResponse()
-    else:
-        #form=SignupForm()
-        #context={'form':form}
-        return JsonResponse()
-   
+    
 
 
 
@@ -95,10 +87,7 @@ def Rest_Password_Request_Handler(request):
             else:
                 
                 return JsonResponse()
-        else:
-            
-            return JsonResponse()
-
+    
 
 def Valid_Reset_Password_Hequest_Handler(request,uid,token):
     try:
@@ -122,10 +111,7 @@ def Valid_Reset_Password_Hequest_Handler(request,uid,token):
            
             return JsonResponse()
 
-    else:
-       return JsonResponse()
-   
-
+    
 
 
 def Valid_Email_Request_Handler(request,uid,token):
@@ -145,8 +131,5 @@ def Valid_Email_Request_Handler(request,uid,token):
 
 def Logout_Request_Hanlder(request):
     if request.method=="POST":
-        logout(request)
-        return JsonResponse()
-    else:
         logout(request)
         return JsonResponse()
