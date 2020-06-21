@@ -33,12 +33,10 @@ def Login_Request_Handler(request):
             login(request,user)
             return JsonResponse()
         else:
-            #form=AuthenticationForm()
-           # context={"form":form,"error":True}
+          
             return JsonResponse()
     else:
-        #form=AuthenticationForm()
-        #context={"form":form}
+  
         return JsonResponse()    
 
 
@@ -63,7 +61,7 @@ def Signup_Request_Handler(request):
                 mail_to.send()
                 return JsonResponse()            
         else:
-           # context={'form':form}
+        
             return JsonResponse()
     else:
         #form=SignupForm()
@@ -92,16 +90,13 @@ def Rest_Password_Request_Handler(request):
                     mail_to.send()
                     return JsonResponse()
                 except Exception as e:
-                     #form=PasswordResetForm()
-                     #context={"form":form,'valid':False}
+                     
                      return JsonResponse()
             else:
-                #form=PasswordResetForm()
-                #context={"form":form,'valid':False}
+                
                 return JsonResponse()
         else:
-            #form=PasswordResetForm()
-            #context={"form":form,'valid':True}
+            
             return JsonResponse()
 
 
@@ -120,13 +115,11 @@ def Valid_Reset_Password_Hequest_Handler(request,uid,token):
                 return JsonResponse()
             else:
                 url=request.get_full_path().split('/')
-               # form=PasswordFormRest(user)
-               # context={'form':form,'uid':url[-2],'token':url[-1],"error":True}
+            
                 return JsonResponse()
         else:
             url=request.get_full_path().split('/')
-            #form=PasswordFormRest(user)
-           # context={'form':form,'uid':url[-2],'token':url[-1]}
+           
             return JsonResponse()
 
     else:
