@@ -30,9 +30,9 @@ def Login_Request_Handler(request):
         if form.is_valid():
             user=form.get_user()
             login(request,user)
-            return JsonResponse()
+            return JsonResponse(request.POST)
         else:       
-            return JsonResponse()
+            return JsonResponse({"error":"un error ocured"})
        
 
 
@@ -55,10 +55,10 @@ def Signup_Request_Handler(request):
                 })
                 mail_to=EmailMessage(subject=subject,body=body,to=[form.cleaned_data.get('email')])
                 mail_to.send()
-                return JsonResponse()            
+                return JsonResponse(request.POST)            
         else:
         
-            return JsonResponse()
+            return JsonResponse({"error":"un error ocured"})
     
 
 
@@ -80,13 +80,10 @@ def Rest_Password_Request_Handler(request):
                         })
                     mail_to=EmailMessage(subject=subject,body=body,to=[form.cleaned_data.get('email')])
                     mail_to.send()
-                    return JsonResponse()
+                    return JsonResponse(request.POST)
                 except Exception as e:
                      
-                     return JsonResponse()
-            else:
-                
-                return JsonResponse()
+                     return JsonResponse({"error":"un error ocured"})
     
 
 def Valid_Reset_Password_Hequest_Handler(request,uid,token):
@@ -105,11 +102,11 @@ def Valid_Reset_Password_Hequest_Handler(request,uid,token):
             else:
                 url=request.get_full_path().split('/')
             
-                return JsonResponse()
+                return JsonResponse(request.POST)
         else:
             url=request.get_full_path().split('/')
            
-            return JsonResponse()
+            return JsonResponse({"error":"un error ocured"})
 
     
 
@@ -124,12 +121,12 @@ def Valid_Email_Request_Handler(request,uid,token):
         user.is_active=True
         user.save()
         login(request,user)
-        return JsonResponse()
+        return JsonResponse(request.POST)
     else:
-        return JsonResponse()
+        return JsonResponse({"error":"un error ocured"})
    
 
 def Logout_Request_Hanlder(request):
     if request.method=="POST":
         logout(request)
-        return JsonResponse()
+        return JsonResponse(request.POST)
